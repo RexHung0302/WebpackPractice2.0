@@ -87,9 +87,11 @@ module.exports = {
         use: [{
             loader: 'url-loader',
             options: {
+              limit: 1024,
               name: '[name].[ext]',
-              publicPath: './images',
-              outputPath: './images'
+              publicPath: 'images/',
+              outputPath: './src/images', // 輸出位置
+              esModule: false,
             }
           },
           {

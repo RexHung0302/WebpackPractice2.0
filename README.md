@@ -62,6 +62,33 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 
 相關配置都可以參考 **webpack.config.js**，配置方面請確保在 **plugins** 裡加入 `new VueLoaderPlugin()`，建議配置一步一步來，防止炸開後找不到錯誤點。
 
+!! 圖片如果需要在 **HTML** 內引入後 **src** 出現 **[object Module]** 沒有正常引入圖片，請先在 **webpack.config.js** 的 **file-loader** 或 **url-loader** 後 **options** 加上 **esModule: false**，因為我們是使用 **CommonJS模塊語法**，而 **file-loader** 或 **url-loader** 跟 **CommonJS** 編譯方法不一樣，而低版本可以不用加是因為後來的版本預設把 **esModule** 改為 **true** 了，加入 **esModule: false** 的地方可參考下方。 !!
+
+```javascript
+// ...上略
+{
+  test: /\.(png|jpg|gif|jpe?g|svg)$/,
+  use: [{
+      loader: 'url-loader',
+      options: {
+        limit: 1024,
+        name: '[name].[ext]',
+        publicPath: 'images/',
+        outputPath: './src/images', // 輸出位置
+        esModule: false,   // <------- 請加在此處
+      }
+    },
+    {
+      loader: 'image-webpack-loader',
+      options: {
+        bypassOnDebug: true,
+      }
+    }
+  ]
+},
+//...下略
+```
+
 之後會再補上 **webpack server** 及 **vue router**，專案時程壓力之下先到此為止就好。
 
 ---
