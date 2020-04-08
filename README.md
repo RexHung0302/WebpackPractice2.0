@@ -1,4 +1,5 @@
-# Webpack 編譯範例 - 含 Vue
+# Webpack Practice2.0 編譯範例
+> *含 **Vue** 及 **Vue** 內使用 lang="pug" 及 lang="scss"*
 
 這是包含以下幾個預處理器及套件的 **Webpack** 範例：
 
