@@ -100,16 +100,16 @@ module.exports = {
           }
         ]
       },
-      // {
-      //   test: /\.(html)$/,
-      //   use: {
-      //     loader: 'html-loader',
-      //     options: {
-      //       attrs: ['img:src', 'img:data-src', 'audio:src'],
-      //       minimize: true
-      //     }
-      //   }
-      // },
+      {
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: ['img:src', 'img:data-src', 'audio:src'],
+            minimize: true
+          }
+        }
+      },
     ]
   },
   //- 壓縮 CSS, JS
