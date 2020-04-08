@@ -32,7 +32,38 @@
 
 ---
 
-## 相關介紹文章
+Webpack 小筆記：
+
+```
+$ npm init & npm init -y // 前者可以詳細配置 後者快速建置
+
+$ npm i -D vue webpack webpack-cli // 安裝 Webpack
+
+$ touch webpack.config.js // 建立 webpack.config.js
+
+$ npm i -D node-sass sass-loader css-loader mini-css-extract-plugin // 安裝 css 套件
+
+$ npm i -D install --save-dev optimize-css-assets-webpack-plugin // 安裝壓縮檔案工具
+
+$ npm i -D pug pug-loader pug-plain-loader html-webpack-plugin // 安裝 pug 套件 及 自動產生 HTML 套件(pug-plain-loader 為 .vue 檔使用)
+
+$ npm i -D install babel-loader @babel/core @babel/preset-env // 安裝JS編譯套件
+
+$ npm i -D install clean-webpack-plugin --save-dev // 安裝清除沒用到檔案的套件
+
+$ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有要使用 Vue 可以不用使用)
+
+```
+
+---
+
+# 重要提醒：
+
+相關配置都可以參考 **webpack.config.js**，配置方面請確保在 **plugins** 裡加入 `new VueLoaderPlugin()`，建議配置一步一步來，防止炸開後找不到錯誤點。
+
+---
+
+# 相關介紹文章
 
 [[Tool Notes] — 關於Webpack #1 - 第一次就上手](https://rexhung0302.github.io/2019/06/18/20190618/)
 
