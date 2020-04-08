@@ -62,6 +62,8 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 
 相關配置都可以參考 **webpack.config.js**，配置方面請確保在 **plugins** 裡加入 `new VueLoaderPlugin()`，建議配置一步一步來，防止炸開後找不到錯誤點。
 
+之後會再補上 **webpack server** 及 **vue router**，專案時程壓力之下先到此為止就好。
+
 ---
 
 # 相關介紹文章
@@ -69,3 +71,7 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 [[Tool Notes] — 關於Webpack #1 - 第一次就上手](https://rexhung0302.github.io/2019/06/18/20190618/)
 
 [[Tool Notes] — 關於Webpack #2 - Babel？](https://rexhung0302.github.io/2020/03/21/20200321/)
+
+[webpack入坑之旅（一）不是开始的开始](https://blog.guowenfh.com/2016/03/24/vue-webpack-01-base/)
+  -> 系列文章推一個
+
