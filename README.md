@@ -62,7 +62,7 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 
 相關配置都可以參考 **webpack.config.js**，配置方面請確保在 **plugins** 裡加入 `new VueLoaderPlugin()`，建議配置一步一步來，防止炸開後找不到錯誤點。
 
-!! 圖片如果需要在 **HTML** 內引入後 **src** 出現 **[object Module]** 沒有正常引入圖片，請先在 **webpack.config.js** 的 **file-loader** 或 **url-loader** 後 **options** 加上 **esModule: false**，因為我們是使用 **CommonJS模塊語法**，而 **file-loader** 或 **url-loader** 跟 **CommonJS** 編譯方法不一樣，而低版本可以不用加是因為後來的版本預設把 **esModule** 改為 **true** 了，加入 **esModule: false** 的地方可參考下方。 !!
+!! 圖片如果需要在 **HTML** 內引入後 **src** 出現 **[object Module]** 沒有正常引入圖片，請先在 **webpack.config.js** 的 **file-loader** 或 **url-loader** 後 **options** 加上 **esModule: false**，因為我們是使用 **CommonJS模塊語法**，而 **file-loader** 或 **url-loader** 跟 **CommonJS** 編譯方法不一樣，而低版本可以不用加是因為後來的版本預設把 **esModule** 改為 **true** 了，加入 **esModule: false** 的地方可參考下方，詳細文章可參考本文最後連結。 !!
 
 ```javascript
 // ...上略
@@ -100,5 +100,7 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 [[Tool Notes] — 關於Webpack #2 - Babel？](https://rexhung0302.github.io/2020/03/21/20200321/)
 
 [webpack入坑之旅（一）不是开始的开始](https://blog.guowenfh.com/2016/03/24/vue-webpack-01-base/)
-  -> 系列文章推一個
 
+[Webpack file-loader outputs [object Module]](https://stackoverflow.com/questions/59070216/webpack-file-loader-outputs-object-module)
+
+[使用webpack打包index.html中的图片](https://juejin.im/post/5d7752036fb9a06b2a20686f)
