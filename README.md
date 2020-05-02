@@ -58,6 +58,8 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 
 ```
 
+> *小知識： npm i -D 為縮寫， i 為 install 的縮寫， -D 則為 --save-dev 的縮寫。*
+
 ---
 
 # 重要提醒：
