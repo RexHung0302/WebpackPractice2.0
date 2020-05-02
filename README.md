@@ -62,7 +62,7 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 
 相關配置都可以參考 **webpack.config.js**，配置方面請確保在 **plugins** 裡加入 `new VueLoaderPlugin()`，建議配置一步一步來，防止炸開後找不到錯誤點。
 
-!! 圖片如果需要在 **HTML** 內引入後 **src** 出現 **[object Module]** 沒有正常引入圖片，請先在 **webpack.config.js** 的 **file-loader** 或 **url-loader** 後 **options** 加上 **esModule: false**，因為我們是使用 **CommonJS模塊語法**，而 **file-loader** 或 **url-loader** 跟 **CommonJS** 編譯方法不一樣，而低版本可以不用加是因為後來的版本預設把 **esModule** 改為 **true** 了，加入 **esModule: false** 的地方可參考下方，詳細文章可參考本文最後連結。 !!
+!! 圖片如果需要在 **HTML** 內引入後 **src** 出現 **[object Module]** 沒有正常引入圖片，請先在 **webpack.config.js** 的 **file-loader** 或 **url-loader** 後 **options** 加上 **esModule: false**，因為我們是使用 **CommonJS模塊語法**，而 **file-loader** 或 **url-loader** 跟 **CommonJS** 編譯方法不一樣，而低版本可以不用加是因為後來的版本預設把 **esModule** 改為 **false** 了，加入 **esModule: false** 的地方可參考下方，詳細文章可參考本文最後連結。 !!
 
 ```javascript
 // ...上略
@@ -90,6 +90,42 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 ```
 
 之後會再補上 **webpack server** 及 **vue router**，專案時程壓力之下先到此為止就好。
+
+2020.05.03 後更：
+
+已補上 **webpack server**，加入方法如下：
+
+1. 打開終端機到專案目錄底下，然後輸入下方指令。
+
+```
+$ npm i -D install webpack-dev-server // 安裝 Webpack Server
+```
+
+2. 在 **webpack.config.js** 裡最上方引入 **const webpack = require('webpack');**。
+
+3. 可視自己是否需要熱更新，需要就在 **plugins** 內加上 **new webpack.HotModuleReplacementPlugin()**，如下方。
+
+```javascript
+plugins: [
+    //- Hot Reload
+    new webpack.HotModuleReplacementPlugin(),
+    //...下略
+```
+
+4. 在 **plugins** 之後補上下面這段，並且可視情況修改自己的 **port**。
+
+```javascript
+devServer: {
+  index: 'index.html', // 預設開啟首頁
+  contentBase: path.join(__dirname, 'dist'),
+  compress: true,
+  hot: true,  // 是否開啟熱更新
+  writeToDisk:true,
+  port: 8085  // 可更換 port
+}
+```
+
+5. 享受吧！(如果有不懂的地方歡迎到我的[部落格](https://rexhung0302.github.io/2020/03/21/20200321/)留言告訴我或是到 **webpack.config.js** 參考設定)。
 
 ---
 

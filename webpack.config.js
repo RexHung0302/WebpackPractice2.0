@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 //- 載入轉存 CSS 檔案的套件
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 //- 壓縮 CSS
@@ -124,6 +125,8 @@ module.exports = {
     ]
   },
   plugins: [
+    //- Hot Reload
+    new webpack.HotModuleReplacementPlugin(),
     //- Vue 必要套件
     new VueLoaderPlugin(),
     //- 4.0後默認刪除 output 資料夾內檔案
@@ -147,11 +150,20 @@ module.exports = {
       hash: true,
       template: './pug/index.pug',
       filename: './index.html'
-    }),
+    })
   ],
   resolve: { 
     alias: { 
         'vue': 'vue/dist/vue.js' 
     } 
+  },
+  //- Server, (hot reload 需要引入 webpack 並在 plugins 加上 new webpack.HotModuleReplacementPlugin())
+  devServer: {
+    index: 'index.html',
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    hot: true,
+    writeToDisk:true,
+    port: 8085
   }
 };

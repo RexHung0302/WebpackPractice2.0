@@ -5,3 +5,7 @@ node_modules/
 
 # 忽略 dist 下所有檔案
 dist/
+
+# package-lock 最好忽略, 防止版本 cache
+package.lock.json
+package-lock.json
