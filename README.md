@@ -54,6 +54,8 @@ $ npm i -D install clean-webpack-plugin --save-dev // 安裝清除沒用到檔�
 
 $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有要使用 Vue 可以不用使用)
 
+// webpack-server 安裝方法可繼續往下看, 2020.05.03 有更新一次如何安裝
+
 ```
 
 ---
