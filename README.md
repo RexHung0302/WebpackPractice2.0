@@ -131,7 +131,7 @@ devServer: {
 }
 ```
 
-5. 享受吧！(如果有不懂的地方歡迎到我的[部落格](https://rexhung0302.github.io/2020/03/21/20200321/)留言告訴我或是到 **webpack.config.js** 參考設定)。
+5. 享受吧！(如果有不懂的地方歡迎到我的[部落格](https://rexhung0302.github.io/2020/03/21/20200321/)留言告訴我或是到 **webpack.config.js** 參考設定)，另外關於 **Server** 的設定可參考 [neighborhood999.github](https://neighborhood999.github.io/webpack-tutorial-gitbook/Part1/WebpackDevServer.html)。
 
 ---
 
