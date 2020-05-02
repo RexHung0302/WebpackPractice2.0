@@ -26,7 +26,7 @@
 
 3. $ npm install
 
-4. $ npm watch / build / build:dev / start / start:dev 擇一
+4. $ npm build / build:dev / server(含熱更新) 擇一
 
 5. Enjoy it!
 ```
