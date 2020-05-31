@@ -9,3 +9,7 @@ dist/
 # package-lock 最好忽略, 防止版本 cache
 package.lock.json
 package-lock.json
+
+# 忽略環境變數
+.env.development
+.env.production

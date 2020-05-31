@@ -13,7 +13,7 @@
 
 5. **Vue**
 
-> **2020.04.08** 修正版，修改路徑及加入 `Vue`，`Vue` 可使用 `Pug` 及 `SCSS` 預處理器。
+6. **dotenv-webpack**
 
 ---
 
@@ -26,9 +26,11 @@
 
 3. $ npm install
 
-4. $ npm build / build:dev / server(含熱更新) 擇一
+4. $ cp .env.example.development .env.development / .env.example.production .env.production // 擇一(一個為測試時的環境變數一個為正式環境)
 
-5. Enjoy it!
+5. $ npm build / build:dev / server(含熱更新) // 擇一
+
+6. Enjoy it!
 ```
 
 ---
@@ -54,6 +56,8 @@ $ npm i -D install clean-webpack-plugin --save-dev // 安裝清除沒用到檔�
 
 $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有要使用 Vue 可以不用使用)
 
+$ npm i -D dotenv-webpack // 安裝環境變數讀取套件
+
 // webpack-server 安裝方法可繼續往下看, 2020.05.03 有更新一次如何安裝
 
 ```
@@ -68,24 +72,29 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 
 !! 圖片如果需要在 **HTML** 內引入後 **src** 出現 **[object Module]** 沒有正常引入圖片，請先在 **webpack.config.js** 的 **file-loader** 或 **url-loader** 後 **options** 加上 **esModule: false**，因為我們是使用 **CommonJS模塊語法**，而 **file-loader** 或 **url-loader** 跟 **CommonJS** 編譯方法不一樣，而低版本可以不用加是因為後來的版本預設把 **esModule** 改為 **false** 了，加入 **esModule: false** 的地方可參考下方，詳細文章可參考本文最後連結。 !!
 
+> **2020.05.31更新後有示範引入圖片方法，詳情可見 `WebpackPractice2.0/src/vue/App.vue` 這隻檔案的引入範例，更多更新細節可見下方更新紀錄。**
+
 ```javascript
 // ...上略
 {
   test: /\.(png|jpg|gif|jpe?g|svg)$/,
-  use: [{
+  use: [
+    //- url-loader 包含 file-loader 可不必使用 file-loader
+    {
       loader: 'url-loader',
       options: {
-        limit: 1024,
-        name: '[name].[ext]',
-        publicPath: 'images/',
-        outputPath: './src/images', // 輸出位置
+        limit: 1024, // (1024)bytes
+        name: '[name]-[hash:7].[ext]',
+        publicPath: './images/',
+        outputPath: './images/', // 輸出位置
         esModule: false,   // <------- 請加在此處
       }
     },
     {
       loader: 'image-webpack-loader',
       options: {
-        bypassOnDebug: true,
+        // bypassOnDebug: true,
+        disable: true
       }
     }
   ]
@@ -93,13 +102,21 @@ $ npm i -D install vue-loader vue-template-compiler // 安裝 Vue(如果沒有�
 //...下略
 ```
 
-之後會再補上 **webpack server** 及 **vue router**，專案時程壓力之下先到此為止就好。
+之後會再補上 ~~**webpack server** 及~~ **vue router**，專案時程壓力之下先到此為止就好。
+
+> *上方更新筆記已紀錄加入 **webpack server** 了。*
 
 ---
 
-### 2020.05.03 後更：
+## 更新紀錄
 
-已補上 **webpack server**，加入方法如下：
+**2020.04.08** 修正：
+
+* 修改路徑及加入 `Vue`，`Vue` 可使用 `Pug` 及 `SCSS` 預處理器。
+
+**2020.05.03** 修正：
+
+* 已補上 **webpack server**，加入方法如下：
 
 1. 打開終端機到專案目錄底下，然後輸入下方指令。
 
@@ -132,6 +149,17 @@ devServer: {
 ```
 
 5. 享受吧！(如果有不懂的地方歡迎到我的[部落格](https://rexhung0302.github.io/2020/03/21/20200321/)留言告訴我或是到 **webpack.config.js** 參考設定)，另外關於 **Server** 的設定可參考 [neighborhood999.github](https://neighborhood999.github.io/webpack-tutorial-gitbook/Part1/WebpackDevServer.html)。
+
+
+ **2020.05.31** 修正：
+
+* 加入環境變數載入套件，請先個別複製 `/WebpackPractice2.0/.env.example.development` 及 `/WebpackPractice2.0/.env.example.production` 至根目錄，之後引入方式可見 `/WebpackPractice2.0/src/js/index.js`，會引入哪隻檔案可至 `/WebpackPractice2.0/package.json` 修改，引入的決定為目前的模式是 `--mode development` 或 `--mode production`，相關引入設定可至 `webpack.config.js` 的 `plugins` 底下的 `new Dotenv` 配置修改。
+
+* `Vue` 加上路徑變數，可至 `webpack.config.js` 的 **resolve alias** 李新增刪除或修改，圖片載入有兩種方式，在 `WebpackPractice2.0/src/vue/App.vue` 裡有載入範例。
+
+* 每一支新的 **pug** 都該有自己獨立的 JS 及 CSS 所以目前在 `webpack.config.js` 的 `new HtmlWebpackPlugin` 加上 `chunks` 來達到分別引入，後方帶入的名稱為上方 `entry` 後方的 `key`，如果想要一隻 pug 引入多個 `JS` 就在後方陣列加入即可。
+
+* 加入圖片引入，引入方式可至 `WebpackPractice2.0/src/vue/App.vue` 查看。
 
 ---
 
